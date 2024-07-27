@@ -8,7 +8,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "Kassie Sanisclaws",
+  "author": "Nasema",
   "license": "ISC",
   "description": "Nodejs server connection with products  Mongodb compass example",
   "dependencies": {

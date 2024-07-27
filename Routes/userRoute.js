@@ -4,12 +4,12 @@ const { CreateAllUsers, UserSignIn, UserRegister, GetAllUsers, GetUserByID, Upda
 
 const userRouter = express.Router();
 
-userRouter.get("/seed", isAdmin, CreateAllUsers);
+userRouter.get("/seed", CreateAllUsers);
 userRouter.post("/signin", UserSignIn);
 userRouter.post("/register", UserRegister);
-userRouter.get("/allUsers", isAdmin, GetAllUsers);
-userRouter.get("/:id", isAdmin, GetUserByID);
+userRouter.get("/allUsers", isAuthorized, isAdmin, GetAllUsers);
+userRouter.get("/:id", isAuthorized, isAdmin, GetUserByID);
 userRouter.put("/profile/", isAuthorized, UpdateUserByID);
-userRouter.delete("/:id", isAdmin, DeleteUserByID);
+userRouter.delete("/:id", isAuthorized, isAdmin, DeleteUserByID);
 
 module.exports = userRouter;

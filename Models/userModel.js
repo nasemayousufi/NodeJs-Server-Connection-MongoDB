@@ -20,7 +20,6 @@ const userSchema = mongodbConnect.Schema({
     },
     displayImage: {
         type: String,
-        required: true
     },
     greeting: {
         type: String,

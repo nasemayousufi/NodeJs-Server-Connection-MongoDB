@@ -131,3 +131,6 @@ dist
 
 # Credentials file
 credentials.json
+
+# Data.js file
+data

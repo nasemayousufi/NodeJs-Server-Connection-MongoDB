@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcrypt");
 const { generateToken } = require('../utils');
 const User = require('../Models/userModel');
 const data = require("../data");
@@ -6,7 +6,7 @@ const data = require("../data");
 const CreateAllUsers = async (req, res) => {
   try {
     const createdUsers = await User.insertMany(data.users);
-    res.status(201).send({ createdUsers });
+    res.status(201).send({ createdUsers }); 
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -75,13 +75,13 @@ const GetUserByID = async (req, res) => {
 const UpdateUserByID = async (req, res) => {
   const user = await User.findById(req.user._id);
   if(user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    user.displayName = req.body.displayName || user.displayName;
-    user.displayRoleType = req.body.displayRoleType || user.displayRoleType;
-    user.displayImage = req.body.displayImage || user.displayImage;
-    user.greeting = req.body.greeting || user.greeting;
-    if(req.body.password) {
+     user.name = req.body.name || user.name;
+     user.email = req.body.email || user.email;
+     user.displayName = req.body.displayName || user.displayName;
+     user.displayRoleType = req.body.displayRoleType || user.displayRoleType;
+     user.displayImage = req.body.displayImage || user.displayImage;
+     user.greeting = req.body.greeting || user.greeting;
+   if(req.body.password) {
       user.password = bcrypt.hashSync(req.body.password, 10);
     }
     const updatedUser = await user.save();
@@ -100,7 +100,13 @@ const UpdateUserByID = async (req, res) => {
 };
 
 const DeleteUserByID = async (req, res) => {
-            
+  const user = await User.findById(req.params.id);
+    if(user) {
+        await user.remove();
+        res.send({ message: 'User Deleted' });
+    } else {
+        res.status(404).send({ message: 'User Not Found' });
+    }      
 };
 
 module.exports = {

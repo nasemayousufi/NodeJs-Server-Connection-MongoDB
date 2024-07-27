@@ -4,20 +4,15 @@ const jwt = require("jsonwebtoken");
 dotenv.config();
 
 const generateToken = (user) => {
-  return jwt.sign({ 
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    isAdmin: user.isAdmin,
-   }, process.env.JWT_SECRET, { expiresIn: "24hrs" });
-};
-
-const verifyToken = (token) => {
-  try {
-    return jwt.verify(token, process.env.JWT_SECRET);
-  } catch (err) {
-    return console.log(err.message);
-  }
+  return jwt.sign(
+    {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    },
+    process.env.SERVER_JWT_SECRET,{ expiresIn: "24hrs" }
+  );
 };
 
 const isAuthorized = (req, res, next) => {
@@ -49,7 +44,6 @@ const isAdmin = (req, res, next) => {
 
 module.exports = { 
   generateToken, 
-  verifyToken,
   isAuthorized,
   isAdmin 
 };
