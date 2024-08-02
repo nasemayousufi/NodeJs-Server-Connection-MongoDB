@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAdmin, isAuthorized } = require('../utils');
+const { isAdmin, isAuthorized } = require('../../utils');
 const { CreateAllProduts, GetAllProducts, GetProductByID, AdminCreateNewProduct, UpdateProductByID, DeleteProductByID } = require("../Controllers/productController");
 
 const productRouter = express.Router();

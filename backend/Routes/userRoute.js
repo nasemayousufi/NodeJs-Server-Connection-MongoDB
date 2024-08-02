@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAdmin, isAuthorized } = require('../utils');
+const { isAdmin, isAuthorized } = require('../../utils');
 const { CreateAllUsers, UserSignIn, UserRegister, GetAllUsers, GetUserByID, UpdateUserByID, DeleteUserByID } = require("../Controllers/userController");
 
 const userRouter = express.Router();
